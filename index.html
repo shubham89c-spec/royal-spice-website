@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Recovery Services</title>
+    <style>
+        :root {
+            --primary: #25D366; /* WhatsApp Green */
+            --dark: #075E54;
+            --bg: #f4f4f4;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+        header {
+            text-align: center;
+            padding: 20px 0;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        h1 { 
+            color: var(--dark); 
+            margin: 0; 
+            font-size: 28px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+        p.subtitle { 
+            color: #666; 
+            margin-top: 5px;
+        }
+        
+        .service-card {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border-left: 5px solid var(--primary);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        label { 
+            font-weight: bold; 
+            color: #333; 
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        input, select, textarea {
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            width: 100%;
+            box-sizing: border-box;
+            transition: 0.3s;
+        }
+        
+        input:focus, select:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 5px rgba(37, 211, 102, 0.3);
+        }
+        
+        button {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+        }
+
+        .note {
+            font-size: 12px;
+            color: #888;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .decoration {
+            text-align: center;
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .success-message {
+            display: none;
+            background: #e8f5e9;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            margin-top: 15px;
+            border: 2px solid var(--primary);
+        }
+
+        .decoration-line {
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+            margin: 15px 0;
+        }
+
+        .price-display {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ff8e8e 100%);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 10px;
+            box-shadow: 0 4px 10px rgba(255, 107, 107, 0.3);
+        }
+
+        /* Disclaimer Styles */
+        .disclaimer-box {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        .disclaimer-box h4 {
+            margin: 0 0 10px 0;
+            color: #856404;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .disclaimer-box p {
+            margin: 0;
+            color: #856404;
+            line-height: 1.6;
+        }
+
+        .checkbox-container {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .checkbox-container input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin-top: 2px;
+            cursor: pointer;
+        }
+
+        .checkbox-container label {
+            font-weight: normal;
+            color: #333;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <div class="decoration">🛡️</div>
+        <h1>Account Recovery and Removals Services</h1>
+        <p class="subtitle">Fast & Secure Social Media Service</p>
+        <div class="badge"></div> Instagram only</div>
+    </header>
+
+    <div class="service-card">
+        <h3>📋 Order Details</h3>
+        <p>Please fill in your account details below. After filling the form, you will be redirected to payment.</p>
+    </div>
+
+    <div class="decoration-line"></div>
+
+    <form id="orderForm">
+        <label>📱 Platform</label>
+        <select id="platform" required>
+            <option value="Instagram">Instagram</option>
+            <option value="Facebook" disabled>Facebook (Coming Soon)</option>
+            <option value="WhatsApp" disabled>WhatsApp (Coming Soon)</option>
+            <option value="Google" disabled>Google / Gmail (Coming Soon)</option>
+            <option value="Other" disabled>Other (Coming Soon)</option>
+        </select>
+
+        <label>🔗 Account Details</label>
+        <input type="text" id="accountID" placeholder="Enter Account URL " required>
+
+        <label>👥 Follower Count</label>
+        <select id="followerCount" required onchange="updatePrice()">
+            <option value="">Select Follower Range</option>
+            <option value="1-50k">1 - 50,000 Followers</option>
+            <option value="50k-1l">50,000 - 1,00,000 Followers</option>
+            <option value="1l-10l">1,00,000 - 10,00,000 Followers</option>
+            <option value="10l-100l">10,00,000 - 1,00,00,000+ Followers</option>
+        </select>
+
+        <label>⚙️ Service Type</label>
+        <select id="serviceType" required onchange="updatePrice()">
+            <option value="Account Recovery">Account Recovery</option>
+            <option value="Removal">Removal</option>
+            <option value="Other">Other</option>
+        </select>
+
+        <div id="priceDisplay" class="price-display" style="display: none;">
+            💰 Total Price: ₹<span id="priceAmount">0</span>
+        </div>
+
+        <!-- Disclaimer Section -->
+        <div class="disclaimer-box">
+            <h4>⚠️ Important Terms & Conditions</h4>
+            <p>
+                By proceeding with this payment, you agree that:
+                <br>• This is a one-time service charge
+                <br>• No refunds will be provided after payment
+                <br>• You will not attempt to chargeback or dispute this transaction
+                <br>• Service will begin immediately after payment confirmation
+            </p>
+            <div class="checkbox-container">
+                <input type="checkbox" id="termsAccepted" required>
+                <label for="termsAccepted">I have read and agree to all terms and conditions. I understand that no refunds will be provided.</label>
+            </div>
+        </div>
+
+        <button type="button" onclick="processOrder()">💳 Pay & Order Now</button>
+    </form>
+
+    <div id="successMessage" class="success-message">
+        <h3>✅ Payment Successful!</h3>
+        <p>Redirecting to WhatsApp...</p>
+    </div>
+
+    <div class="decoration-line"></div>
+
+    <p class="note">🔒 Secure Payment via Razorpay/Instamojo. Order will be processed immediately after payment.</p>
+</div>
+
+<script>
+    // Price Configuration - Aapke latest prices ke according
+    const prices = {
+        '1-50k': { 'Account Recovery': 2000, 'Removal': 10000, 'Other': 2000 },
+        '50k-1l': { 'Account Recovery': 60000, 'Removal': 20000, 'Other': 60000 },
+        '1l-10l': { 'Account Recovery': 80000, 'Removal': 30000, 'Other': 80000 },
+        '10l-100l': { 'Account Recovery': 100000, 'Removal': 40000, 'Other': 100000 }
+    };
+
+    // Yeh function placeholder text change karega
+    function updatePlaceholder() {
+        const serviceType = document.getElementById('serviceType').value;
+        const accountInput = document.getElementById('accountID');
+        
+        if (serviceType === 'Removal') {
+            accountInput.placeholder = "Enter Account URL (for Removal)";
+        } else if (serviceType === 'Account Recovery') {
+            accountInput.placeholder = "Enter Account (for Recovery)";
+        } else {
+            accountInput.placeholder = "Enter Account Details";
+        }
+    }
+
+    // Yeh function price update karega
+    function updatePrice() {
+        const followerCount = document.getElementById('followerCount').value;
+        const serviceType = document.getElementById('serviceType').value;
+        const priceDisplay = document.getElementById('priceDisplay');
+        const priceAmount = document.getElementById('priceAmount');
+
+        if (followerCount && prices[followerCount] && prices[followerCount][serviceType]) {
+            priceDisplay.style.display = 'block';
+            priceAmount.textContent = prices[followerCount][serviceType];
+        } else {
+            priceDisplay.style.display = 'none';
+        }
+    }
+
+    function processOrder() {
+        // 1. Get User Details
+        const platform = document.getElementById('platform').value;
+        const accountID = document.getElementById('accountID').value;
+        const followerCount = document.getElementById('followerCount').value;
+        const serviceType = document.getElementById('serviceType').value;
+        const price = document.getElementById('priceAmount').textContent;
+        const termsAccepted = document.getElementById('termsAccepted').checked;
+
+        if(!accountID) {
+            alert("Please enter your account ID");
+            return;
+        }
+
+        if(!followerCount) {
+            alert("Please select follower count");
+            return;
+        }
+
+        if(!termsAccepted) {
+            alert("Please accept the terms and conditions before proceeding");
+            return;
+        }
+
+        // 2. YOUR WHATSAPP NUMBER (Format: CountryCode + Number, e.g., 919876543210)
+        const myPhoneNumber = "919876543210"; 
+
+        // 3. Create the WhatsApp Message
+        const message = `*NEW ORDER REQUEST*%0A%0A*Platform:* ${platform}%0A*Account ID:* ${accountID}%0A*Follower Count:* ${followerCount}%0A*Service Type:* ${serviceType}%0A*Price:* ₹${price}%0A%0AI have completed the payment. Please start the recovery process.`;
+
+        // 4. IMPORTANT: REPLACE THIS LINK WITH YOUR PAYMENT LINK
+        const paymentLink = "https://rzp.io/l/YOUR_PAYMENT_LINK_HERE"; 
+
+        // 5. Redirect to Payment
+        window.location.href = paymentLink;
+    }
+    
+    // Page load hone par default placeholder set karein
+    window.onload = updatePlaceholder;
+</script>
+
+</body>
+</html>
